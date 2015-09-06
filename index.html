@@ -1,37 +1,58 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>Pychgwp by bcwolven</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Pychgwp</h1>
-        <p>Python script to change OS X wallpaper independently on all connected monitors based on a supplied &quot;theme&quot; keyword.</p>
+    <section class="page-header">
+      <h1 class="project-name">Pychgwp</h1>
+      <h2 class="project-tagline">Python script to change OS X wallpaper independently on all connected monitors based on a supplied &quot;theme&quot; keyword.</h2>
+      <a href="https://github.com/bcwolven/pychgwp" class="btn">View on GitHub</a>
+      <a href="https://github.com/bcwolven/pychgwp/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/bcwolven/pychgwp/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-        <p class="view"><a href="https://github.com/bcwolven/pychgwp">View the Project on GitHub <small>bcwolven/pychgwp</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/bcwolven/pychgwp/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/bcwolven/pychgwp/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/bcwolven/pychgwp">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
+    <section class="main-content">
+      <h3>
 <a id="im-kind-of-a-desktop-wallpaper-junkie" class="anchor" href="#im-kind-of-a-desktop-wallpaper-junkie" aria-hidden="true"><span class="octicon octicon-link"></span></a>I'm kind of a desktop wallpaper junkie</h3>
 
 <p>I usually work with two (external) monitors at home, and three (laptop + 2 external) at work, generally with 4 virtual desktops ("Spaces" in OS X), and I wanted a way to change the backgrounds for all the monitors in a particular space based on a theme of my choosing. My solution? Create a "wallpapers" folder (I sync mine via Dropbox, but that's another story, and not necessary for this script to work), set a WALLPAPER environment variable that points to that folder (I do this in my .bash_profile), and then tag the images in that folder with one or more "theme" descriptors, each of which is prefixed with "wp_",e.g., wp_dragonfly, wp_solarsystem, wp_titan (the moon of Saturn), etc. When I want to update the theme on a particular desktop I just type "chgwp dragonfly" in Terminal.app (or the terminal of your choice) on that particular desktop, and each of the displays is updated to a unique image bearing that tag from my wallpapers folder. If I just type "chgwp" without a theme, something gets chosen randomly from that folder.</p>
+
+<h3>
+<a id="warnings" class="anchor" href="#warnings" aria-hidden="true"><span class="octicon octicon-link"></span></a>Warnings</h3>
+
+<p><strong>NOTE:</strong> This script relies on the availablility of the
+following modules that come with the "stock" OS X Python: 
+</p><pre><code>
+from AppKit import NSWorkspace, NSScreen
+from Foundation import NSURL
+</code></pre>
+
+
+<p>Now *my* default version of Python is *not* the standard OS version,
+but you can specify which version of Python is called in various ways.
+To use this script I simply make it executable and include the
+following as the first line:
+</p><pre><code>
+#!/usr/bin/python
+</code></pre>
+
+
+<p>You can point to a different version of Python, say that installed
+using <a href="http://brew.sh">Homebrew</a>, by changing that first
+line to the following, e.g., if you've installed a particular package
+using brew and don't <em>want</em> to use the standard OS version of
+Python.
+</p><pre><code>
+#!/usr/local/bin/python
+</code></pre>
+
 
 <h3>
 <a id="caveats" class="anchor" href="#caveats" aria-hidden="true"><span class="octicon octicon-link"></span></a>Caveats</h3>
@@ -44,13 +65,15 @@
 <li>I've got a really long to-do list.
 </li>
 </ul>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/bcwolven">bcwolven</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/bcwolven/pychgwp">Pychgwp</a> is maintained by <a href="https://github.com/bcwolven">bcwolven</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+
+    </section>
+
+  
   </body>
 </html>
