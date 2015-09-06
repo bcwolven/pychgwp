@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pychgwp by bcwolven</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Pychgwp</h1>
+        <p>Python script to change OS X wallpaper independently on all connected monitors based on a supplied &quot;theme&quot; keyword.</p>
+
+        <p class="view"><a href="https://github.com/bcwolven/pychgwp">View the Project on GitHub <small>bcwolven/pychgwp</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/bcwolven/pychgwp/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/bcwolven/pychgwp/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/bcwolven/pychgwp">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>
+<a id="im-kind-of-a-desktop-wallpaper-junkie" class="anchor" href="#im-kind-of-a-desktop-wallpaper-junkie" aria-hidden="true"><span class="octicon octicon-link"></span></a>I'm kind of a desktop wallpaper junkie</h3>
+
+<p>I usually work with two (external) monitors at home, and three (laptop + 2 external) at work, generally with 4 virtual desktops ("Spaces" in OS X), and I wanted a way to change the backgrounds for all the monitors in a particular space based on a theme of my choosing. My solution? Create a "wallpapers" folder (I sync mine via Dropbox, but that's another story, and not necessary for this script to work), set a WALLPAPER environment variable that points to that folder (I do this in my .bash_profile), and then tag the images in that folder with one or more "theme" descriptors, each of which is prefixed with "wp_",e.g., wp_dragonfly, wp_solarsystem, wp_titan (the moon of Saturn), etc. When I want to update the theme on a particular desktop I just type "chgwp dragonfly" in Terminal.app (or the terminal of your choice) on that particular desktop, and each of the displays is updated to a unique image bearing that tag from my wallpapers folder. If I just type "chgwp" without a theme, something gets chosen randomly from that folder.</p>
+
+<h3>
+<a id="caveats" class="anchor" href="#caveats" aria-hidden="true"><span class="octicon octicon-link"></span></a>Caveats</h3>
+
+<ul>
+<li>I'm not sure what this will do if you treat each display as a separate space - this is an option in the System Preferences, but not one I've ever chosen to use. 
+</li>
+<li>If you've got more displays than you have wallpapers for a given theme/tag, something unfortunate might happen. I don't think I've added a check for that case yet. It's on the to-do list.
+</li>
+<li>I've got a really long to-do list.
+</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/bcwolven">bcwolven</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
