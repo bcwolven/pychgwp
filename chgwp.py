@@ -10,6 +10,7 @@ https://developer.apple.com/library/mac/documentation/cocoa/reference/applicatio
 
 import sys
 import os
+import argparse
 import glob
 import random
 import subprocess
@@ -41,8 +42,16 @@ if not os.path.exists(wp_dir):
     print 'Error: Specified path for wallpaper folder does not exist: ',wp_dir
     sys.exit()
 
-if len(sys.argv) == 2: # A particular "theme" was specified
-    v = sys.argv[1]
+parser = argparse.ArgumentParser(description="Set wallpaper on all or "\
+             "specified desktop to specified theme or random selection.")
+parser.add_argument("-t","--theme",
+    help="Desired theme (Determined by tags set for images in wallpaper folder")
+parser.add_argument("-d","--desktop",
+    help="Desired desktop (Numbered from left to right, starting from 0.")
+args = parser.parse_args()
+
+if args.theme: # A particular "theme" was specified
+    v = args.theme
     v = v.lower() # Force upper case for matching below
     print 'Option specified: '+v
     p = subprocess.Popen(['mdfind','-onlyin',wp_dir,'kMDItemUserTags == wp_'+v],
@@ -61,6 +70,9 @@ else: # No theme specified, use desired default setting
     print 'No options specified, choosing randomly from specified folder.'
     pictures_list = glob.glob(wp_dir+'*.*')
 
+if args.desktop:
+    mon_rng = [int(args.desktop)]
+
 for dndx in mon_rng:
     #--- Choose randonly from images tagged with the specified theme.
     wp_path = random.choice(pictures_list)
@@ -68,14 +80,6 @@ for dndx in mon_rng:
     pictures_list[:] = [wp for wp in pictures_list if wp_path not in wp]
     print "To monitor",dndx,"applying",wp_path
     change_desktop_background(wp_path,dndx)
-
-
-
-
-
-
-
-
 
 #mdls -name "kMDItemUserTags" ~/Drop_box/Wallpapers/*.*|grep -v "("|grep -v ")"
 #p = subprocess.call(['mdls','-onlyin',wp_dir,'kMDItemUserTags == '+v])
