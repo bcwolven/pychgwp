@@ -1,6 +1,8 @@
 #!/usr/bin/python
-"""Uses Cocoa classes via PyObjC to set a random desktop picture on all screens.
-Tested on Mountain Lion and Mavericks (and Yosemite - BCW).
+"""
+Uses Cocoa classes via PyObjC to set a random desktop picture on all screens.
+Tested on Mountain Lion and Mavericks (and Yosemite, and Sierra, and High
+Sierra... - BCW).
 
 See:
 https://developer.apple.com/library/mac/documentation/cocoa/reference/applicationkit/classes/NSWorkspace_Class/Reference/Reference.html
@@ -27,6 +29,7 @@ def change_desktop_background(file, desk_id):
     ws       = NSWorkspace.sharedWorkspace()
     ws.setDesktopImageURL_forScreen_options_error_(file_url, screen, {}, None)
 
+
 # Determine number of monitors currently active.
 num_mon = len(NSScreen.screens())
 mon_rng = range(0,num_mon)
@@ -44,18 +47,20 @@ if not os.path.exists(wp_dir):
     sys.exit()
 
 parser = argparse.ArgumentParser(description="Set wallpaper on all or "
-             "specified desktop to specified theme or random selection.")
-parser.add_argument("-t","--theme",
-    help="Desired theme (Determined by tags set for images in wallpaper folder")
-parser.add_argument("-d","--desktop",
-    help="Desired desktop (Numbered from left to right, starting from 0.")
+                                 "specified desktop to specified theme or "
+                                 "random selection.")
+parser.add_argument("-t","--theme",help="Desired theme (Determined by tags set"
+                    " for images in wallpaper folder")
+parser.add_argument("-d","--desktop",help="Desired desktop (Numbered from left"
+                    " to right, starting from 0.")
 args = parser.parse_args()
 
 if args.theme:  # A particular "theme" was specified
     v = args.theme
     v = v.lower()  # Force upper case for matching below
     print 'Option specified: '+v
-    p = subprocess.Popen(['mdfind','-onlyin',wp_dir,'kMDItemUserTags == wp_'+v],
+    p = subprocess.Popen(['mdfind','-onlyin',wp_dir,
+                          'kMDItemUserTags == wp_'+v],
                          stdout=subprocess.PIPE)
     (output,err) = p.communicate()
     if err is not None:
@@ -86,7 +91,8 @@ for dndx in mon_rng:
     print "To monitor",dndx,"applying",wp_path
     change_desktop_background(wp_path,dndx)
 
-# mdls -name "kMDItemUserTags" ~/Drop_box/Wallpapers/*.*|grep -v "("|grep -v ")"
+# mdls -name \
+# "kMDItemUserTags" ~/Drop_box/Wallpapers/*.*|grep -v "("|grep -v ")"
 # p = subprocess.call(['mdls','-onlyin',wp_dir,'kMDItemUserTags == '+v])
 # print pictures_list
 # print len(pictures_list)
