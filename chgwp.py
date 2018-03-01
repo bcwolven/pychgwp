@@ -39,11 +39,11 @@ mon_rng = range(0,num_mon)
 # wallpaper dictionary below.
 wp_dir = os.environ.get('WALLPAPER')
 if wp_dir is None:
-    print 'Error: Environment variable specifying path to wallpaper folder '\
-          'not defined: $WALLPAPER'
+    print('Error: Environment variable specifying path to wallpaper folder '
+          'not defined: $WALLPAPER')
     sys.exit()
 if not os.path.exists(wp_dir):
-    print 'Error: Specified path for wallpaper folder does not exist: ',wp_dir
+    print('Error: Specified path for wallpaper folder does not exist: ',wp_dir)
     sys.exit()
 
 parser = argparse.ArgumentParser(description="Set wallpaper on all or "
@@ -58,26 +58,26 @@ args = parser.parse_args()
 if args.theme:  # A particular "theme" was specified
     v = args.theme
     v = v.lower()  # Force upper case for matching below
-    print 'Option specified: '+v
+    print('Option specified: '+v)
     p = subprocess.Popen(['mdfind','-onlyin',wp_dir,
                           'kMDItemUserTags == wp_'+v],
                          stdout=subprocess.PIPE)
     (output,err) = p.communicate()
     if err is not None:
-        print "Houston, we have a problem."
+        print("Houston, we have a problem.")
         sys.exit()
     pictures_list = output.split('\n')
     if len(pictures_list) == 1:
-        print "No images found with tag: ",v
+        print("No images found with tag: ",v)
         sys.exit()
     else:
         pictures_list = pictures_list[0:-1]  # remove trailing blank entry
 else:  # No theme specified, use desired default setting
-    print 'No options specified, choosing randomly from specified folder.'
+    print('No options specified, choosing randomly from specified folder.')
     pictures_list = glob.glob(wp_dir+'*.*')
 
 if len(pictures_list) == 0:
-    print "No images found at specified location: ",wp_dir
+    print("No images found at specified location: ",wp_dir)
     sys.exit()
 
 if args.desktop:
@@ -88,7 +88,7 @@ for dndx in mon_rng:
     wp_path = random.choice(pictures_list)
     # Remove selected entry from list so we don't get duplicate images.
     pictures_list[:] = [wp for wp in pictures_list if wp_path not in wp]
-    print "To monitor",dndx,"applying",wp_path
+    print("To monitor",dndx,"applying",wp_path)
     change_desktop_background(wp_path,dndx)
 
 # mdls -name \
